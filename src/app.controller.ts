@@ -7,6 +7,16 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    return this.appService.getHello();
+    return "HelloDavid";
+  }
+
+  @Get('new')
+  newEndpoint() {
+    return 'I am new';
+  }
+
+  @Get('/route/')
+  hello() {
+    return 'con /sas/';
   }
 }
