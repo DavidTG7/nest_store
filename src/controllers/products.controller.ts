@@ -7,6 +7,8 @@ import {
   Body,
   Put,
   Delete,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 
 @Controller('products')
@@ -23,6 +25,7 @@ export class ProductsController {
   }
 
   @Get('filter')
+  @HttpCode(HttpStatus.ACCEPTED)
   getProductsFilter() {
     return {
       message: 'I am a filer!',
