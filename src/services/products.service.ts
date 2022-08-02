@@ -20,7 +20,8 @@ export class ProductsService {
   }
 
   findOne(id: number) {
-    return this.products.find((item) => item.id === id);
+    const result: any = this.products.find((item) => item.id === id);
+    return result;
   }
 
   create(payload: any) {
@@ -33,11 +34,23 @@ export class ProductsService {
     return newProduct;
   }
 
-  // update(id: number) {
+  update(id: number, payload: any) {
+    const product = this.findOne(id);
+    console.log({ product, payload });
 
-  // }
+    if (product) {
+      const index = this.products.findIndex((item) => item.id === id);
+      this.products[index] = {
+        ...product,
+        ...payload,
+      };
 
-  // delete(id: number) {
+      // console.log('products', this.products[index]);
 
-  // }
+      return this.products[index];
+    }
+    return null;
+  }
+
+  // delete(id: number) {}
 }
