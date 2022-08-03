@@ -38,11 +38,11 @@ export class ProductsController {
   }
 
   @Get(':productId')
-  getProduct(@Param('productId') productId: string) {
+  getProduct(@Param('productId', ParseIntPipe) productId: number) {
     // return {
     //   message: `Product ${productId}`,
     // };
-    return this.productsService.findOne(Number(productId));
+    return this.productsService.findOne(productId);
   }
 
   @Post()
@@ -64,7 +64,7 @@ export class ProductsController {
   }
 
   @Delete(':id')
-  delete(@Param('id') id: number) {
-    return id;
+  delete(@Param('id', ParseIntPipe) id: number) {
+    return this.productsService.remove(id);
   }
 }
