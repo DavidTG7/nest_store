@@ -44,9 +44,6 @@ export class ProductsService {
         ...product,
         ...payload,
       };
-
-      // console.log('products', this.products[index]);
-
       return this.products[index];
     }
     return null;
