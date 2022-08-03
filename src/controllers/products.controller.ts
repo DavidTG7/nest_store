@@ -9,6 +9,7 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ProductsService } from 'src/services/products.service';
 
@@ -41,7 +42,6 @@ export class ProductsController {
     // return {
     //   message: `Product ${productId}`,
     // };
-    console.log('product id', productId, typeof productId);
     return this.productsService.findOne(Number(productId));
   }
 
@@ -55,12 +55,12 @@ export class ProductsController {
   }
 
   @Put(':id')
-  update(@Param('id') id: number, @Body() payload: object) {
+  update(@Param('id', ParseIntPipe) id: number, @Body() payload: object) {
     // return {
     //   id,
     //   payload,
     // };
-    return this.productsService.update(Number(id), payload);
+    return this.productsService.update(id, payload);
   }
 
   @Delete(':id')
